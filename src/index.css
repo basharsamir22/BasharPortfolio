@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  /* تعريف التدرج اللوني كمتغير */
+  --background-image-bashar-gradient: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899);
+  /* تعريف لون الخلفية الداكن */
+  --color-dark-bg: #030303;
+}
+
+:root {
+  background-color: var(--color-dark-bg);
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  html, body {
+    cursor: none; /* إخفاء الماوس الأصلي في الشاشات الكبيرة فقط */
+  }
+  
+  /* تأكد أن الروابط والأزرار لا تظهر الماوس الأصلي أيضاً */
+  a, button {
+    cursor: none;
+  }
+}
