@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://eng-bashar-samir.netlify.app/sitemap.xml

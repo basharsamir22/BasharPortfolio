@@ -1,113 +1,87 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Calendar, Award } from 'lucide-react';
+import { GraduationCap, BookOpen, Award } from 'lucide-react';
 
 const educationData = [
   {
-    degree: "MBA in Artificial Intelligence",
+    degree: "MBA in Artificial Intelligence Business",
     institution: "Talal Abu-Ghazaleh Global University",
     duration: "2025 - 2026",
-    status: "Present",
-    glow: "shadow-blue-500/20"
+    status: "Completed",
+    desc: "Focusing on AI-driven management and strategic digital transformation."
   },
   {
-    degree: "Computer Science",
+    degree: "Bachelor of Computer Science",
     institution: "Islamic University of Gaza",
     duration: "2021 - 2023",
     status: "Completed",
-    glow: "shadow-purple-500/20"
+    desc: "Specialized in Software Engineering and Algorithmic Thinking."
   },
   {
-    degree: "Software and Databases",
+    degree: "Diploma in Software & Databases",
     institution: "University College of Applied Sciences",
     duration: "2018 - 2020",
     status: "Completed",
-    glow: "shadow-pink-500/20"
+    desc: "Foundation of full-stack development and database architecture."
   }
 ];
 
 const Education = () => {
   return (
-    <section id="about" className="py-24 px-6 min-h-screen flex flex-col justify-center items-center max-w-7xl mx-auto overflow-hidden">
+    <section id="education" className="py-24 px-6 max-w-5xl mx-auto relative">
       
-      {/* العنوان المطور */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mb-24"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        className="text-center mb-20"
       >
-        <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase mb-4">Academic Journey</h2>
-        <motion.div 
-          initial={{ width: 0 }}
-          whileInView={{ width: "80px" }}
-          className="h-1 bg-bashar-gradient mx-auto mb-6" 
-        />
-        <p className="text-gray-500 text-[10px] font-bold tracking-[0.4em] uppercase opacity-60">
-          Professional Specialization & Growth
-        </p>
+        <h2 className="text-5xl font-black italic tracking-tighter uppercase">Academic Journey</h2>
+        <p className="text-white/20 text-[10px] font-bold uppercase tracking-[0.4em] mt-4">Merging theory with technical excellence</p>
       </motion.div>
 
-      {/* حاوية الخط الزمني */}
-      <div className="relative w-full max-w-6xl">
-        
-        {/* الخط الأفقي الواصل (يظهر في الشاشات الكبيرة فقط) */}
-        <div className="absolute top-[48px] left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent hidden md:block" />
+      {/* الخط المركزي للـ Timeline */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 w-[1px] h-[70%] bg-gradient-to-b from-blue-500 via-purple-500 to-transparent top-48 hidden md:block opacity-20" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
-          {educationData.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.8 }}
-              className="flex flex-col items-center group relative text-center"
-            >
-              {/* أيقونة التخرج مع تأثير التوهج */}
-              <div className="relative mb-10">
-                <motion.div 
-                  animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.4, 0.2] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className={`absolute inset-0 bg-bashar-gradient blur-2xl rounded-full opacity-20 group-hover:opacity-60 transition-opacity`}
-                />
-                <div className={`relative bg-black border border-white/10 w-24 h-24 rounded-[2rem] flex items-center justify-center transition-all duration-500 group-hover:border-blue-500/50 group-hover:rotate-[10deg] shadow-2xl ${item.glow}`}>
-                  <GraduationCap className="text-white group-hover:scale-110 transition-transform" size={32} />
-                  
-                  {/* شارة "الحالي" */}
-                  {item.status === "Present" && (
-                    <span className="absolute -top-2 -right-2 flex h-4 w-4">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-4 w-4 bg-blue-500 border-2 border-black"></span>
-                    </span>
-                  )}
+      <div className="space-y-12">
+        {educationData.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: index * 0.1 }}
+            className={`flex flex-col md:flex-row items-center justify-between w-full ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+          >
+            {/* الكرت التعليمي */}
+            <div className="w-full md:w-[45%] group">
+              <div className="p-8 rounded-[2rem] border border-white/5 bg-white/[0.02] backdrop-blur-xl hover:border-white/20 transition-all duration-500 relative overflow-hidden">
+                {/* إضاءة خلفية للكرت الأول (الماجستير) */}
+                {index === 0 && (
+                  <div className="absolute inset-0 bg-blue-500/5 animate-pulse" />
+                )}
+
+                <div className="relative z-10">
+                  <span className="text-[10px] font-black text-blue-500 tracking-widest uppercase mb-2 block italic">
+                    {item.duration} • {item.status}
+                  </span>
+                  <h3 className="text-2xl font-black text-white/90 mb-2 leading-tight uppercase tracking-tighter">
+                    {item.degree}
+                  </h3>
+                  <p className="text-sm font-bold text-white/40 mb-4">{item.institution}</p>
+                  <p className="text-xs text-gray-500 leading-relaxed italic">{item.desc}</p>
                 </div>
               </div>
+            </div>
 
-              {/* نصوص الدرجة العلمية */}
-              <div className="px-4">
-                <span className="text-[10px] font-black tracking-[0.3em] text-blue-500 mb-4 block uppercase">
-                  {item.duration}
-                </span>
-                
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-3 leading-tight group-hover:bg-bashar-gradient group-hover:bg-clip-text group-hover:text-transparent transition-all">
-                  {item.degree}
-                </h3>
-                
-                <p className="text-xs text-gray-400 italic font-bold tracking-wide opacity-60 mb-6 max-w-[200px] mx-auto">
-                  {item.institution}
-                </p>
+            {/* الأيقونة في المنتصف */}
+            <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-black border-2 border-white/10 z-20 group-hover:border-blue-500 transition-colors duration-500">
+               {index === 0 ? <Award size={20} className="text-blue-500" /> : <BookOpen size={20} className="text-white/20" />}
+            </div>
 
-                <div className="w-8 h-[2px] bg-white/5 mx-auto group-hover:w-16 group-hover:bg-blue-500 transition-all duration-500" />
-              </div>
-
-              {/* خط الربط العمودي للموبايل */}
-              {index !== educationData.length - 1 && (
-                <div className="h-16 w-[1px] bg-gradient-to-b from-white/10 to-transparent md:hidden mt-8" />
-              )}
-            </motion.div>
-          ))}
-        </div>
+            {/* مساحة فارغة للجانب المقابل */}
+            <div className="hidden md:block w-[45%]" />
+          </motion.div>
+        ))}
       </div>
     </section>
   );
