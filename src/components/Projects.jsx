@@ -14,7 +14,7 @@ const projects = [
     color: "from-blue-600/40 to-purple-600/40",
     image: img1,
     github: "https://github.com/basharsamir22/TaskeManager.git",
-    demo: "https://book-reviewer-platform.netlify.app/" 
+    demo: "https://taske-manager-bashar.netlify.app/" 
   },
   { 
     id: 2, 
@@ -25,7 +25,7 @@ const projects = [
     color: "from-indigo-600/40 to-purple-600/40",
     image: img2,
     github: "https://github.com/basharsamir22/BookReview",
-    demo: "https://book-reviewe-platform.netlify.app/"
+    demo: "https://book-reviewer-platform.netlify.app/"
   }
 ];
 
